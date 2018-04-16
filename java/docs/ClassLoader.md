@@ -118,3 +118,18 @@ protected Class<?> loadClass(String name, boolean resolve)
 * `protected final void resolveClass(Class<?> c)`
 
   使用该方法可以使用类的Class对象创建完成也同时被解析。前面我们说链接阶段主要是对字节码进行验证，为类变量分配内存并设置初始值同时将字节码文件中的符号引用转换为直接引用。
+  
+  
+## 类加载器的关系
+
+类加载器之间的关系，是指parent属性的依赖关系，而非继承关系。
+
+1. 启动类加载器，由C++实现，没有父类。
+
+2. 拓展类加载器(ExtClassLoader)，由Java语言实现，父类加载器为null
+
+3. 系统类加载器(AppClassLoader)，由Java语言实现，父类加载器为ExtClassLoader
+
+4. 自定义类加载器，父类加载器肯定为AppClassLoader。
+
+

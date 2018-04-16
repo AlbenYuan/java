@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class Collection {
 
-    public static void main(String[] args) {
+    public  void test(String[] args) {
         Map<String, String> hashMap = new HashMap<>();
         Map<String, String> hashTable = new Hashtable<>();
         Map<String, String> linkedHashMap = new LinkedHashMap<>();
@@ -19,5 +19,10 @@ public class Collection {
 
         Thread.State state = Thread.currentThread().getState();
     }
+
+
+
+
+
 
 }
