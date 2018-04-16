@@ -1,4 +1,4 @@
-package com.albenyuan.java.classloader;
+package com.albenyuan.jvm.classloader;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,6 +1,6 @@
-package com.albenyuan.java;
+package com.albenyuan.jvm;
 
-import com.albenyuan.java.classloader.FileClassLoader;
+import com.albenyuan.jvm.classloader.FileClassLoader;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,4 +25,20 @@ public class ClassLoaderTest {
 
     }
 
+
+    @Test
+    public void loadByFile() throws Exception {
+        FileClassLoader fileClassLoader = new FileClassLoader("./");
+        try {
+            //加载指定的class文件
+            Class<?> clazz = fileClassLoader.loadClass("com.albenyuan.jvm.classloader.Entity");
+            Object obj = clazz.newInstance();
+            logger.info("class :{}", clazz);
+            logger.info("string:{}", clazz.newInstance().toString());
+
+            //输出结果:I am DemoObj
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
