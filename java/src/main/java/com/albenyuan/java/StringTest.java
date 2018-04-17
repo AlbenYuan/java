@@ -6,6 +6,7 @@ package com.albenyuan.java;
  */
 public class StringTest {
 
+
     private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;
 
     char[] value = {};
