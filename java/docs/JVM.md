@@ -1,5 +1,5 @@
 # Java虚拟机
-> JVM(Java Virtual Machine)，java虚拟机。
+JVM(Java Virtual Machine)，Java虚拟机(以Hot Spot JVM)。
 
 ## Java中的数据
 
