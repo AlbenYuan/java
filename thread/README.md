@@ -3,29 +3,29 @@
 
 ## 创建线程
 无论使用什么方式使用线程都需要，完成以下三步
-1. 定义执行体，。
-1. 创建线程```new Thread();```，不同的实现方式，在创建线程的时候会传入不同的参数。
-1. 启动线程`thread.start();`
+1. 定义执行体；
+1. 创建线程```new Thread()```，不同的实现方式，在创建线程的时候会传入不同的参数；
+1. 启动线程`thread.start()`。
 
 ### 实现方式
 这里的实现方式，我的理解是指线程执行内容的实现方式。
-1. 继承`Thread`
+1. 继承`java.lang.Thread`
     1. 定义：定义类[ExtendThread](./src/main/java/com/albenyuan/thread/ExtendThread.java)继承`java.lang.Thread`，
     并重写`run()`方法;
     1. 使用：
         ```java
        new ExtendThread().start();
        ```
-1. 实现`Runnable`
+1. 实现`java.lang.Runnable`
     1. 定义：定义类[RunnableThread](./src/main/java/com/albenyuan/thread/RunnableThread.java)，实现`java.lang.Runnable`接口，实现`run()`方法;
     1. 使用：
         ```java
         Runnable runnable = new RunableThread();
         new Thread(runnable).start();
         ```
-1. 实现`Callable<T>`
+1. 实现`java.util.concurrent.Callable<T>`
 
-    该方式实现需要使用到`java.util.concurrent.FutureTask`的线程在调用后可以返回线程的执行结果。
+    该方式实现需要使用到`java.util.concurrent.FutureTask<T>`的线程在调用后可以返回线程的执行结果。
     
     1. 定义：定义类[CallableThread](./src/main/java/com/albenyuan/thread/CallableThread.java)，
     实现`java.util.concurrent.Callable<T>`接口，并实现`T call()`方法；
@@ -67,7 +67,7 @@
 1. 不能直接使用`this`访问当前线程，建议使用`Thread.currentThread()`访问当前线程。
 
 
-### java.util.concurrent.Callable
+### java.util.concurrent.Callable<T>
 
 #### 优势
 
@@ -77,5 +77,5 @@
 
 #### 劣势
 
-1. 不能直接使用`this`访问当前线程，建议使用`Thread.currentThread()`访问当前线程'
+1. 不能直接使用`this`访问当前线程，建议使用`Thread.currentThread()`访问当前线程'；
 1. 需要和`java.util.concurrent.FutureTask<T>`联合使用。
