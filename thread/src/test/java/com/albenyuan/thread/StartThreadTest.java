@@ -1,5 +1,8 @@
 package com.albenyuan.thread;
 
+import com.albenyuan.thread.start.CallableThread;
+import com.albenyuan.thread.start.ExtendThread;
+import com.albenyuan.thread.start.RunnableThread;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +14,7 @@ import java.util.concurrent.FutureTask;
  * @Author Alben Yuan
  * @Date 2018-05-15 15:22
  */
-public class ThreadTest {
+public class StartThreadTest {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -48,6 +51,6 @@ public class ThreadTest {
             }
         }.start();
         logger.info("task get:{}", future.get());
-        
+
     }
 }
