@@ -16,6 +16,7 @@ import java.util.concurrent.FutureTask;
  */
 public class StartThreadTest {
 
+
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Test

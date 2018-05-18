@@ -17,34 +17,35 @@ java对基本的数据类型均做了封装，封装类分别为Boolean、Byte�
 
 3. 类
 
-使用`class`关键字声明的类。如开发人员定义的`User`和系统提供的字符串操作类`StringBuffer`等。
-```java
-public class User{
-    
-    private String name;
-    
-    private String card;
-    // ...
-    
-}
-```
+    使用`class`关键字声明的类。如开发人员定义的`User`和系统提供的字符串操作类`StringBuffer`等。
+    ```java
+    public class User{
+        
+        private String name;
+        
+        private String card;
+        // ...
+        
+    }
+    ```
 4. Class
 
-JVM本身提供了一个java.lang.Class类，该类用于描述加载的类型的描述。JVM在启动时加载class时，会为每一个class生成一个Class对象实例。
+    JVM本身提供了一个java.lang.Class类，该类用于描述加载的类型的描述。JVM在启动时加载class时，会为每一个class生成一个Class对象实例。
 
 ### Java中的变量
 java是强类型语言，任何变量的声明必须指定数据数据类型且初始化（基本类型存在默认值）。声明变量的位置和方式决定了变量的存活时间。
 
 1. 局部变量
 
-在代码块中声明的变量，包块静态代码块、构造代码块、方法体以及`{}`的代码块。
+    在代码块中声明的变量，包块静态代码块、构造代码块、方法体以及`{}`的代码块。
 
 2. 成员变量
 
-类的属性，在class声明声明未使用的static声明的变量。
+    类的属性，在class声明声明未使用的static声明的变量。
 
 3. 静态变量
-类具有的共性，在class声明时，使用static关键是声明的变量。
+
+    类具有的共性，在class声明时，使用static关键是声明的变量。
 
 4. 常量
 声明时使用final关键字定义的变量，因其值在初始化之后不可改变，估成为常量。

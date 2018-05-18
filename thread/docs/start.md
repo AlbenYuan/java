@@ -166,32 +166,184 @@
 
 # 线程的状态
 
+## 系统中的线程
 
+### 线程的状态
 
-## 系统中的状态
+![os-thread-state](./image/os-thread-state.jpg)
+
+- new： 新建，线程在创建，系统分配资源。
+
+- ready：就绪，当前的调度实例在可执行队列中，随时可以被切换到占用处理器的运行状态；
+
+- running：运行，当前的调度实例，正在占用处理器运行中；
+
+- blocked：阻塞，当前的调度实例在等待相应的资源；
+
+- terminated：终止，结束状态，释放操作系统分配的资源。
+
+### 状态转化
+
+- new -> ready
+
+    系统创建线程后，无需等待其他资源，可直接进入可执行队列，等待cpu资源。
+
+- ready-> running
+
+    线程获取到cpu资源，开始运行。
+    
+- running -> ready
+
+    时间片消耗完毕、其他线程抢占cpu资源导致当前调度退出cpu。
+
+- running -> blocked
+
+    当前调度需要等待获取到io、其他线程资源、或者`sleep`。
+
+- blocked -> ready
+
+    获取到对应的资源、被唤起、到时唤起。
+
+- running -> terminated 
+
+    调度执行完毕，系统回收资源。
 
 ## java.lang.Thread.State
 
- - `State.NEW`：
+### 线程的状态
+
+![java-thread-state](./image/java-thread-state.jpg)
+
+- `State.NEW`
+
+    > Thread state for a thread which has not yet started.
+    
+    > 线程状态：一个还未开始的线程
+
+    新建状态，还未启动。`Thread`实力已经创建，但还没有调用`start()`方法
         
-        新建状态，还未启动。还没有调用`start()`方法
+- `State.RUNNABLE`
+
+    > Thread state for a runnable thread. A thread in the runnable state is executing in the Java virtual machine but it may be waiting for other resources from the operating system such as processor. 
+    
+    > 线程状态：一个运行状态的。一个在运行状态线的线程，指的是正在JVM上执行，但有可能正在等待其他系统资源，如：处理器
+   
+   已经调用了`start()`、正在CPU上执行、等待操作系统资源。
         
-    - `State.RUNNABLE` 
+- `State.BLOCKED` 
+
+    > Thread state for a thread blocked waiting for a monitor lock.
     
-        已经调用了`start()`，正在执行、等待虚拟机资源、等待系统资源
-        
-    - `State.BLOCKED` 
-        
-        等待锁，等待对象锁，等待代码块锁
+    > 线程状态：一个正在等待监视锁而阻塞的线程
+
+    等待锁，等待对象锁，等待代码块锁。（理解有些偏颇，待考究）
     
-    - `State.WAITING` 
+- `State.WAITING` 
+
+    > Thread state for a waiting thread.
     
-        使用的锁对象调用了`wait()`方法、调用了`Thread.join()`且未设置超时时间、调用了`LockSupport.park()`方法。
+    > 线程状态：一个正在等待的线程。
     
-    - `State.TIMED_WAITING`
+    调用了`Object.wait()`、`Thread.join()`、`LockSupport.park()`方法。
     
-        使用的锁对象调用了`wait(long)`方法、调用了`Thread.join(long)`且设置超时时间、调用了`LockSupport.park()`方法。
+- `State.TIMED_WAITING`
+
+    > Thread state for a waiting thread with a specified waiting time.
     
-    - `State.TERMINATED`
+    > 线程状态：一个正在等待，且拥有等待时长的线程。
+    
+    调用了`Object.wait(long)`、`Thread.join(long)`、`Thread.sleep(long)`、`LockSupport.parkNanos()`、`LockSupport.parkUntil()`方法。
+    
+- `State.TERMINATED`
+    
+    > Thread state for a terminated thread.
+    
+    > 线程状态：一个终结的线程。
+   
+    执行结束的线程。
+    
+### 线程的转化
+
+- new -> runnable
+
+    - 调用了`thread.start()`
+
+ 
+- runnable -> blocked
+    
+    - 等待监视锁，为了进入`synchronized`代码块、等待锁进入
+
+
+- blocked -> runnable
+
+    - 获取监视锁，可以执行`synchronized`代码块
+    
+    
+- runnable -> waiting
+
+    - 调用了`obj.wait()`；
+    - 调用了`thread.join()`；
+    - 调用了`LockSupport.park()`；
+
+- runnable -> timed_waiting
+
+    - 调用了`Thread.sleep(long)`；
+    - 调用了`obj.wait(long)`；
+    - 调用了`thread.join(long)`；
+    - 调用了`LockSupport.parkNanos(long)`；
+    - 调用了`LockSupport.parkUntil(long)`。
+
+
+- waiting -> runnable
+
+    - 调用了`obj.notify()`；
+    - 调用了`obj.notifyAll()`；
+    - thread执行完毕，即：terminated；
+    - 调用了`LockSupport.unpark()`。
+
+- timed_waiting -> runnable
+
+    - 等待/睡眠时间完毕
+
+- running -> terminated 
+
+    - 运行结束
+    - 抛出未捕获异常
+
+
+## 系统+Java结合理解
+系统中的状态线程状态，着中描述里线程获取cpu和系统资源时中间的切换，java中的状态赵中描述了线程在业务级别等待和获取监视锁的切换。
+根据两者我们可以将线程分为以下状态
+
+![all-thread-state](./image/all-thread-state.jpg)
+
+### 对象锁
+    在java中每一个对象都会自带一把线程锁，和一个锁竞争池，锁等待池。
+    
+- 锁竞争池：池中的线程，都有机会获得该对象的锁。
+
+- 锁等待池：池中的线程，只能等待该对象调用`notify()`、`notifyAll()，`来唤起池中一个、全部线程进去锁池。
+    
+    - notify()：通知等待池中随机的一个线程进入锁竞争池。
+    
+    - notifyAll()：通知锁等待池中的全部线程进入锁竞争池。
+
+### 线程状态
+
+- new
+
+- ready
+
+- running
+
+- blocked
+
+- waiting
+
+- wait-lock
+
+- terminated
+
+
 
 

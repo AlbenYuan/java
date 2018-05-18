@@ -92,10 +92,9 @@ class文件为JVM加载的源文件，其内容包含一下内容
 2. 如果已经加载，则返回已经加载的类，如果无则执行下一步
 3. 检查当前类加载器是否有父加载器，如果有则调用父加载器加载该类
 4. 父类加载器加载失败或者无父类加载器，则该类加载器开始加载该类并返回
-  ```
-protected Class<?> loadClass(String name, boolean resolve)
-        throws ClassNotFoundException
-    {
+    ```java
+    protected Class<?> loadClass(String name, boolean resolve)
+        throws ClassNotFoundException {
         synchronized (getClassLoadingLock(name)) {
             // First, check if the class has already been loaded
             Class<?> c = findLoadedClass(name);
@@ -130,7 +129,7 @@ protected Class<?> loadClass(String name, boolean resolve)
             return c;
         }
     }
-  ```
+    ```
 ### 双亲委派模式优势
 1. 避免重复加载
    
