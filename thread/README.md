@@ -183,7 +183,7 @@
 
 ### 线程的状态
 
-![os-thread-state](./image/os-thread-state.jpg)
+![os-thread-state](./docs/image/os-thread-state.jpg)
 
 - new： 新建，线程在创建，系统分配资源。
 
@@ -225,7 +225,7 @@
 
 ### 线程的状态
 
-![java-thread-state](./image/java-thread-state.jpg)
+![java-thread-state](./docs/image/java-thread-state.jpg)
 
 - `State.NEW`
 
@@ -328,7 +328,7 @@
 系统中的状态线程状态，着中描述里线程获取cpu和系统资源时中间的切换，java中的状态赵中描述了线程在业务级别等待和获取监视锁的切换。
 根据两者我们可以将线程分为以下状态
 
-![all-thread-state](./image/all-thread-state.jpg)
+![all-thread-state](./docs/image/all-thread-state.jpg)
 
 ### 对象锁
 
