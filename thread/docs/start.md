@@ -218,15 +218,15 @@
 
     > Thread state for a thread which has not yet started.
     
-    > 线程状态：一个还未开始的线程
+    > 线程状态：一个还未开始的线程。
 
-    新建状态，还未启动。`Thread`实力已经创建，但还没有调用`start()`方法
+    新建状态，还未启动。`Thread`实力已经创建，但还没有调用`start()`方法。
         
 - `State.RUNNABLE`
 
     > Thread state for a runnable thread. A thread in the runnable state is executing in the Java virtual machine but it may be waiting for other resources from the operating system such as processor. 
     
-    > 线程状态：一个运行状态的。一个在运行状态线的线程，指的是正在JVM上执行，但有可能正在等待其他系统资源，如：处理器
+    > 线程状态：一个运行状态的。一个在运行状态线的线程，指的是正在JVM上执行，但有可能正在等待其他系统资源，如：处理器。
    
    已经调用了`start()`、正在CPU上执行、等待操作系统资源。
         
@@ -234,9 +234,9 @@
 
     > Thread state for a thread blocked waiting for a monitor lock.
     
-    > 线程状态：一个正在等待监视锁而阻塞的线程
+    > 线程状态：一个正在等待监视锁而阻塞的线程。
 
-    等待锁，等待对象锁，等待代码块锁。（理解有些偏颇，待考究）
+    等待锁，等待对象锁，等待代码块锁。（理解有些偏颇，待考究）。
     
 - `State.WAITING` 
 
@@ -308,8 +308,8 @@
 - running -> terminated 
 
     - 运行结束
+    
     - 抛出未捕获异常
-
 
 ## 系统+Java结合理解
 系统中的状态线程状态，着中描述里线程获取cpu和系统资源时中间的切换，java中的状态赵中描述了线程在业务级别等待和获取监视锁的切换。
@@ -331,19 +331,56 @@
 ### 线程状态
 
 - new
+    
+    线程创建，但还未调用`start()`方法
 
 - ready
-
+    
+    就绪状态，等待CPU资源，获取到cup资源后即可运行计算
+    
+    - 线程启动后获取到相应资源，锁，进入就绪状态，等待获取到cpu资源。
+    
+    - 在运行状态下`Thread.yield()`，而且退让了cpu，进入就绪状态。
+    
 - running
+
+   线程获取到cpu资源，正在运行计算。
 
 - blocked
 
+    线程阻塞，调用了`Thread.sleep(long)`方法、IO阻塞，网络阻塞
+
 - waiting
+    
+    在锁等待池中，等待唤醒去竞争获取锁。
+    
+    - 调用了`obj.wait()`、`obj.wait(long)`方法；
+    
+    - 调用了`thrad.join()`、`thrad.join(long)`方法。
+    
+   
 
 - wait-lock
 
+    在锁竞争池中，竞争对象锁。
+    
+    - 调用了`obj.notify()`、`thread.notifyAll()`方法；
+    
+    - 调用`thread.join()`、`thrad.join(long)`后，thread线程执行结束。
+
 - terminated
 
+    线程运行结束。
+    
+    - 代码快执行完毕；
+    
+    - run()发生未捕获的异常。
+    
+    
+    
+   
+### 说明    
+备注：`java.util.concurrent.locks`的类还没有理解透彻，部分暂时未加入以上状态变化。后续会作出相应的补充。
 
 
 
