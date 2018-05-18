@@ -25,7 +25,7 @@
         ```
 1. 实现`java.util.concurrent.Callable<T>`
 
-    该方式实现需要使用到`java.util.concurrent.FutureTask<T>`的线程在调用后可以返回线程的执行结果。
+    该方式实现需要使用到`java.util.concurrent.FutureTask<T>`，线程在执行后可以返回线程的执行结果。
     
     1. 定义：定义类[CallableThread](./src/main/java/com/albenyuan/thread/CallableThread.java)，
     实现`java.util.concurrent.Callable<T>`接口，并实现`T call()`方法；
@@ -77,11 +77,24 @@
 
 #### 劣势
 
-1. 不能直接使用`this`访问当前线程，建议使用`Thread.currentThread()`访问当前线程'；
+1. 不能直接使用`this`访问当前线程，建议使用`Thread.currentThread()`访问当前线程；
 1. 需要和`java.util.concurrent.FutureTask<T>`联合使用。
 
 
 # 线程的方法
+线程中使用的方法：`java.lang.Thread`实现、继承于`java.lang.Objec`实现的方法。
+
+
+## java.lang.Object
+
+- `public void wait()`、`public void wait(long)`
+
+    使线程进入等待池，等待时间完毕或者被唤起。
+
+- `public void nofity()`、`public void nofityAll()`
+
+    唤起等待池中的线程，进入锁竞争池中竞争获取锁。
+
 
 ## java.lang.Thread的方法
 
