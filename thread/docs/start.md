@@ -67,7 +67,7 @@
 1. 不能直接使用`this`访问当前线程，建议使用`Thread.currentThread()`访问当前线程。
 
 
-### java.util.concurrent.Callable<T>
+### java.util.concurrent.Callable\<T>
 
 #### 优势
 
