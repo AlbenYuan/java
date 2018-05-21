@@ -8,6 +8,10 @@
 
 - [Thread多线程](./thread/README.md)
 
+- [synchronized](./thread/docs/synchronized.md)
+
+- [Lock](./thread/docs/locks.md)
+
 - [JDBC (Java DataBase Connectivity)](#)
 
 ## 数据库
