@@ -396,6 +396,26 @@
 
 
 
+## 线程间的通信方式
 
+- wait/notify
 
+  - wait()/wait(long)
+
+    没有需要的数据时，线程进入等待
+
+  - notify()/ notifyAll()
+    
+    产生数据后，通知等待线程
+  
+  
+- pipe 管道
+
+  - PipeInputStream/PipeReader
+
+    通过管道，读取数据
+ 
+  - PipeWriterPipeOutputStream/PipeWriter
+    
+    通过管道、写入数据
 
