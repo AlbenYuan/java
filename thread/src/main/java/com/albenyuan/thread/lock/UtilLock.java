@@ -43,6 +43,47 @@ public class UtilLock {
 
     }
 
+    public void lockAndSy() {
+        final UtilLock utilLock = this;
+        new Thread() {
+
+            @Override
+            public void run() {
+                String name = Thread.currentThread().getName();
+
+                synchronized (lock) {
+                    logger.info("{} get synchronized lock", name);
+                    logger.info("{} beginning sleep", name);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    logger.info("{} wakeup ", name);
+                }
+            }
+        }.start();
+        new Thread() {
+
+            @Override
+            public void run() {
+                String name = Thread.currentThread().getName();
+                lock.lock();
+                logger.info("{} get lock lock", name);
+                logger.info("{} beginning sleep", name);
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                logger.info("{} wakeup ", name);
+                lock.unlock();
+
+
+            }
+        }.start();
+    }
+
     private void lock(boolean exception) {
 
         try {
@@ -147,8 +188,9 @@ public class UtilLock {
         UtilLock lock = new UtilLock();
 //        lock.useLock();
 
-        lock.useCondition();
+//        lock.useCondition();
 
+        lock.lockAndSy();
     }
 
 
