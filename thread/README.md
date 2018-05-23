@@ -127,7 +127,7 @@
     
 - `public final void join()`、`public final synchronized void join(long millis)`    
 
-    阻塞当前线程，知道子线程执行完毕或者阻塞超时。其内部调用了
+    阻塞当前线程，知道子线程执行完毕或者阻塞超时。其内部调用了`wait()`方法实现的。
 
 - `public long getId()` 
 
