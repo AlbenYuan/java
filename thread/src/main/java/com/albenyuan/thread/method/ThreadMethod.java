@@ -6,5 +6,8 @@ package com.albenyuan.thread.method;
  */
 public class ThreadMethod extends Thread {
 
+    public void await() {
+    }
+
 
 }
