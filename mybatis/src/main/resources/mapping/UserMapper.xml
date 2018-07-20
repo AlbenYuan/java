@@ -25,4 +25,16 @@
         from user where id=#{0} limit 1
     </select>
 
+    <select id="findOneById" parameterType="long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user where id=#{id} limit 1
+    </select>
+
+    <select id="findByMap" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user where id=#{id} limit 1
+    </select>
+
 </mapper>

@@ -5,8 +5,9 @@ import com.albenyuan.mybatis.service.UserService;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.annotation.Resource;
+import java.util.HashMap;
 
 /**
  * @Author Alben Yuan
@@ -16,7 +17,7 @@ public class UserTester extends SpringJUnitTestCase {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Resource
+    @Autowired
     private UserService userService;
 
     @Test
@@ -27,5 +28,19 @@ public class UserTester extends SpringJUnitTestCase {
     @Test
     public void findById() {
         logger.info("findById:{}", userService.findById(1l));
+    }
+
+    @Test
+    public void findOneById() {
+        logger.info("findById:{}", userService.findOneById(1l));
+    }
+
+    @Test
+    public void findByMap() {
+        logger.info("findByMap:{}", userService.findByMap(new HashMap<String, Object>() {
+            {
+                this.put("id", 1l);
+            }
+        }));
     }
 }
