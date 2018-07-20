@@ -19,4 +19,6 @@ public interface UserService {
     User findOneById(Long id);
 
     User findByMap(Map<String, Object> map);
+
+    User findByEntity(User user);
 }

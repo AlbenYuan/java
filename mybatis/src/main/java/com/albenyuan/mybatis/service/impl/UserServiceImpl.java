@@ -39,4 +39,9 @@ public class UserServiceImpl implements UserService {
     public User findByMap(Map<String, Object> map) {
         return userMapper.findByMap(map);
     }
+
+    @Override
+    public User findByEntity(User user) {
+        return userMapper.findByEntity(user);
+    }
 }

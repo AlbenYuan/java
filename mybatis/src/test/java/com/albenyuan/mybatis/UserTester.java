@@ -1,6 +1,7 @@
 package com.albenyuan.mybatis;
 
 import com.albenyuan.mybatis.common.SpringJUnitTestCase;
+import com.albenyuan.mybatis.entity.User;
 import com.albenyuan.mybatis.service.UserService;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -42,5 +43,13 @@ public class UserTester extends SpringJUnitTestCase {
                 this.put("id", 1l);
             }
         }));
+    }
+
+    @Test
+    public void findByEntity() {
+        User user = new User();
+        logger.info("findByEntity:{}", userService.findByEntity(user));
+        user.setId(1l);
+        logger.info("findByEntity:{}", userService.findByEntity(user));
     }
 }

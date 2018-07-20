@@ -19,6 +19,8 @@ public interface UserMapper {
 
     User findOneById(Long id);
 
+    User findByEntity(User user);
+
     User findByMap(Map<String, Object> map);
 
 }
