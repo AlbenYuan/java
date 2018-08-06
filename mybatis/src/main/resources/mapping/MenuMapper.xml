@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.albenyuan.mybatis.mapper.MenuMapper">
+    <resultMap id="BaseResultMap" type="com.albenyuan.mybatis.entity.Menu">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="is_directory" jdbcType="BIT" property="isDirectory"/>
+        <result column="father_id" jdbcType="INTEGER" property="fatherId"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="icon" jdbcType="VARCHAR" property="icon"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+
+    <resultMap id="TreeMap" type="com.albenyuan.mybatis.entity.Menu" extends="BaseResultMap">
+        <collection column="id" property="child" javaType="ArrayList"
+                    select="selectTreeByFatherId"/>
+    </resultMap>
+
+    <resultMap id="FatherDetailMap" type="com.albenyuan.mybatis.entity.Menu" extends="BaseResultMap">
+        <association property="father" column="father_id" javaType="com.albenyuan.mybatis.entity.Menu"
+                     select="selectDetailById"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, name, is_directory, father_id, url, icon, create_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from menu
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+
+    <select id="selectTree" resultMap="TreeMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM menu WHERE father_id is NULL
+    </select>
+
+    <select id="selectTreeByFatherId" resultMap="TreeMap" parameterType="long">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM menu WHERE father_id =#{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectTreeById" resultMap="TreeMap" parameterType="long">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM menu WHERE id =#{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectDetailById" resultMap="FatherDetailMap" parameterType="long">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM menu WHERE id =#{id,jdbcType=INTEGER}
+    </select>
+
+
+    <select id="selectChildByFatherId" parameterType="long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from menu
+        where father_id = #{fatherId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        DELETE FROM menu
+        WHERE id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.albenyuan.mybatis.entity.Menu">
+        INSERT INTO menu (id, name, is_directory,
+                          father_id, url, icon,
+                          create_time)
+        VALUES (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{isDirectory,jdbcType=BIT},
+                #{fatherId,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR},
+                #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.albenyuan.mybatis.entity.Menu">
+        insert into menu
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="isDirectory != null">
+                is_directory,
+            </if>
+            <if test="fatherId != null">
+                father_id,
+            </if>
+            <if test="url != null">
+                url,
+            </if>
+            <if test="icon != null">
+                icon,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="isDirectory != null">
+                #{isDirectory,jdbcType=BIT},
+            </if>
+            <if test="fatherId != null">
+                #{fatherId,jdbcType=INTEGER},
+            </if>
+            <if test="url != null">
+                #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="icon != null">
+                #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.albenyuan.mybatis.entity.Menu">
+        update menu
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="isDirectory != null">
+                is_directory = #{isDirectory,jdbcType=BIT},
+            </if>
+            <if test="fatherId != null">
+                father_id = #{fatherId,jdbcType=INTEGER},
+            </if>
+            <if test="url != null">
+                url = #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="icon != null">
+                icon = #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.albenyuan.mybatis.entity.Menu">
+        UPDATE menu
+        SET name         = #{name,jdbcType=VARCHAR},
+            is_directory = #{isDirectory,jdbcType=BIT},
+            father_id    = #{fatherId,jdbcType=INTEGER},
+            url          = #{url,jdbcType=VARCHAR},
+            icon         = #{icon,jdbcType=VARCHAR},
+            create_time  = #{createTime,jdbcType=TIMESTAMP}
+        WHERE id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

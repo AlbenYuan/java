@@ -23,6 +23,7 @@
     </environments>
 
     <mappers>
+        <mapper resource="mapping/MenuMapper.xml"/>
         <mapper resource="mapping/UserMapper.xml"/>
     </mappers>
 </configuration>

@@ -23,7 +23,7 @@ import java.util.List;
  * @Author Alben Yuan
  * @Date 2018-07-30 15:57
  */
-public class MyBatis {
+public class MyBatis extends MyBatisTester {
 
     private static Logger logger = LoggerFactory.getLogger(MyBatis.class);
 
