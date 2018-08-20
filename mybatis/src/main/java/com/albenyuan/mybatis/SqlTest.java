@@ -1,11 +1,18 @@
 package com.albenyuan.mybatis;
 
 import com.albenyuan.mybatis.entity.Menu;
+import com.albenyuan.mybatis.entity.User;
 import com.albenyuan.mybatis.mapper.MenuMapper;
 import com.albenyuan.mybatis.mapper.UserMapper;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.test.annotation.Rollback;
+
+import java.util.List;
 
 /**
  * @Author Alben Yuan
@@ -15,18 +22,33 @@ public class SqlTest extends MyBatisTester {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
+    private MenuMapper menuMapper;
+
+    private UserMapper userMapper;
+
+
+    @Before
+    public void before() {
+        menuMapper = getMapper(MenuMapper.class);
+        userMapper = getMapper(UserMapper.class);
+    }
+
     @Test
     public void testFetchSize() {
         UserMapper userMapper = getMapper(UserMapper.class);
+        // select  from  db
         logger.info("find one by null: {}", userMapper.findOneById(null));
+        // select from db
         logger.info("find one by 1l  : {}", userMapper.findOneById(1l));
+
+        // select from cache
         logger.info("find one by 1l  : {}", userMapper.findOneById(1l));
     }
 
     @Test
+    @Rollback
     public void testList() {
         Menu menu;
-        MenuMapper menuMapper = getMapper(MenuMapper.class);
         logger.debug("1l  :{}", menuMapper.selectChildByFatherId(1l));
         logger.debug("null:{}", menuMapper.selectChildByFatherId(null));
         logger.debug("tree:{}", menuMapper.selectTree());
@@ -36,4 +58,13 @@ public class SqlTest extends MyBatisTester {
         logger.debug("detail:{}", menu);
     }
 
+
+    @Test
+    public void testPage() {
+        PageHelper.startPage(1, 2);
+        List<User> list = userMapper.findAll();
+        PageInfo<User> page = new PageInfo(list, 2);
+        logger.info("page:{}", page);
+
+    }
 }

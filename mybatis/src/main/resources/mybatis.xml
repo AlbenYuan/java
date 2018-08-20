@@ -6,20 +6,32 @@
 
     <!--<properties resource="classpath:jdbc.properties"/>-->
     <!--<settings>-->
-        <!--<setting name="cacheEnabled" value="false"/>-->
-        <!--<setting name="lazyLoadingEnabled" value="false"/>-->
-        <!--<setting name="aggressiveLazyLoading" value="true"/>-->
-        <!--<setting name="logImpl" value="STDOUT_LOGGING"/>-->
+    <!--<setting name="cacheEnabled" value="false"/>-->
+    <!--<setting name="lazyLoadingEnabled" value="false"/>-->
+    <!--<setting name="aggressiveLazyLoading" value="true"/>-->
+    <!--<setting name="logImpl" value="STDOUT_LOGGING"/>-->
     <!--</settings>-->
     <!--<environments default="development">-->
-        <!--<environment id="development">-->
-            <!--<transactionManager type="JDBC"/>-->
-            <!--<dataSource type="POOLED">-->
-                <!--<property name="driver" value="${jdbc.driver}"/>-->
-                <!--<property name="url" value="${url}"/>-->
-                <!--<property name="username" value="${username}"/>-->
-                <!--<property name="password" value="${password}"/>-->
-            <!--</dataSource>-->
-        <!--</environment>-->
+    <!--<environment id="development">-->
+    <!--<transactionManager type="JDBC"/>-->
+    <!--<dataSource type="POOLED">-->
+    <!--<property name="driver" value="${jdbc.driver}"/>-->
+    <!--<property name="url" value="${url}"/>-->
+    <!--<property name="username" value="${username}"/>-->
+    <!--<property name="password" value="${password}"/>-->
+    <!--</dataSource>-->
+    <!--</environment>-->
     <!--</environments>-->
+
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageHelper">
+            <property name="dialect" value="mysql"/>
+            <property name="offsetAsPageNum" value="false"/>
+            <property name="rowBoundsWithCount" value="false"/>
+            <property name="pageSizeZero" value="true"/>
+            <property name="reasonable" value="false"/>
+            <property name="supportMethodsArguments" value="false"/>
+            <property name="returnPageInfo" value="none"/>
+        </plugin>
+    </plugins>
 </configuration>
