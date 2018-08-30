@@ -9,13 +9,13 @@
             http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
-    <bean id="beanPostProcessor" class="me.beilin.spring.MyBeanPostProcessor"/>
+    <bean id="beanPostProcessor" class="com.albenyuan.spring.flow.MyBeanPostProcessor"/>
 
-    <bean id="instantiationAwareBeanPostProcessor" class="me.beilin.spring.MyInstantiationAwareBeanPostProcessor"/>
+    <bean id="instantiationAwareBeanPostProcessor" class="com.albenyuan.spring.flow.MyInstantiationAwareBeanPostProcessor"/>
 
-    <bean id="beanFactoryPostProcessor" class="me.beilin.spring.MyBeanFactoryPostProcessor"/>
+    <bean id="beanFactoryPostProcessor" class="com.albenyuan.spring.flow.MyBeanFactoryPostProcessor"/>
 
-    <bean id="person" class="me.beilin.spring.Person"
+    <bean id="person" class="com.albenyuan.spring.flow.Person"
           init-method="myInit"
           destroy-method="myDestory"
           scope="singleton"
@@ -23,5 +23,5 @@
           p:address="广州"
           p:phone="15900000000"/>
 
-    <bean id="student" class="me.beilin.spring.Student"/>
+    <bean id="student" class="com.albenyuan.spring.flow.Student"/>
 </beans>
