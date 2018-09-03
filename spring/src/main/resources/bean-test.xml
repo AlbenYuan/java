@@ -21,4 +21,8 @@
 
     <bean name="userForSingleton" class="com.albenyuan.spring.bean.User" scope="singleton"/>
 
+    <bean name="initBean" class="com.albenyuan.spring.lifecycle.InitBean" init-method="init"/>
+    <bean name="initializingBeanImpl" class="com.albenyuan.spring.lifecycle.InitializingBeanImpl"/>
+    <bean name="initializing" class="com.albenyuan.spring.lifecycle.Initializing" init-method="initializing"/>
+
 </beans>

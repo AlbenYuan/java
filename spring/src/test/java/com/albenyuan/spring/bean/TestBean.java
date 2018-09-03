@@ -3,12 +3,16 @@ package com.albenyuan.spring.bean;
 import com.albenyuan.spring.common.SpringBaseTestCase;
 import org.junit.Assert;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @Author Alben Yuan
  * @Date 2018-08-24 16:38
  */
 public class TestBean extends SpringBaseTestCase {
+
+    private static Logger logger = LoggerFactory.getLogger(TestBean.class);
 
     @Test
     public void testCreate() {
@@ -32,6 +36,14 @@ public class TestBean extends SpringBaseTestCase {
         User userForPrototype1 = application.getBean("userForPrototype", User.class);
         User userForPrototype2 = application.getBean("userForPrototype", User.class);
         Assert.assertTrue("userForPrototype1 != userForPrototype2", userForPrototype1 != userForPrototype2);
+    }
+
+
+    @Test
+    public void testInit() {
+        logger.info("bean:{}", application.getBean("initBean"));
+        logger.info("bean:{}", application.getBean("initializingBeanImpl"));
+        logger.info("bean:{}", application.getBean("initializing"));
     }
 
 
