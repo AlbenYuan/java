@@ -11,10 +11,6 @@
 
     <artifactId>spring</artifactId>
 
-    <properties>
-        <spring.version>4.3.13.RELEASE</spring.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
