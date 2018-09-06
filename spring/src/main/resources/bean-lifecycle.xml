@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
+       default-init-method="globalInit" default-destroy-method="globalDestroy"
+>
+
+    <bean name="initBean" class="com.albenyuan.spring.lifecycle.InitBean" init-method="init"/>
+    <bean name="initializingBeanImpl" class="com.albenyuan.spring.lifecycle.InitializingBeanImpl"/>
+    <bean name="initializing" class="com.albenyuan.spring.lifecycle.Initializing" init-method="initializing"/>
+
+
+    <bean name="cleanupBean" class="com.albenyuan.spring.lifecycle.CleanupBean" destroy-method="cleanup"/>
+    <bean name="disposable" class="com.albenyuan.spring.lifecycle.Disposable" destroy-method="cleanup"/>
+    <bean name="disposableBean" class="com.albenyuan.spring.lifecycle.DisposableBeanImpl"/>
+
+</beans>

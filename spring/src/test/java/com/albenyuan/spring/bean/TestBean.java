@@ -40,21 +40,5 @@ public class TestBean extends SpringBaseTestCase {
         User userForPrototype2 = application.getBean("userForPrototype", User.class);
         Assert.assertTrue("userForPrototype1 != userForPrototype2", userForPrototype1 != userForPrototype2);
     }
-
-
-    @Test
-    public void testInit() {
-        logger.info("bean:{}", application.getBean("initBean"));
-        logger.info("bean:{}", application.getBean("initializingBeanImpl"));
-        logger.info("bean:{}", application.getBean("initializing"));
-    }
-
-    @Test
-    public void testDestroy() {
-        logger.info("CleanupBean:{}", application.getBean(CleanupBean.class));
-        logger.info("Disposable:{}", application.getBean(Disposable.class));
-        logger.info("DisposableBeanImpl:{}", application.getBean(DisposableBeanImpl.class));
-    }
-
-
+    
 }
