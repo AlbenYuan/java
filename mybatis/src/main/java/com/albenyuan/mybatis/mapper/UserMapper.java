@@ -1,6 +1,7 @@
 package com.albenyuan.mybatis.mapper;
 
 import com.albenyuan.mybatis.entity.User;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -23,5 +24,8 @@ public interface UserMapper {
     User findByEntity(User user);
 
     User findByMap(Map<String, Object> map);
+
+    @MapKey("id")
+    Map<Integer, User> selectUserMap();
 
 }

@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.annotation.Rollback;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author Alben Yuan
@@ -34,15 +35,22 @@ public class SqlTest extends MyBatisTester {
     }
 
     @Test
+    public void testParam() {
+        logger.debug("find one by null: {}", userMapper.findById(null));
+        logger.debug("find one by null: {}", userMapper.findOneById(null));
+        logger.debug("find one by 1l  : {}", userMapper.findById(1l));
+        logger.debug("find one by 1l  : {}", userMapper.findOneById(1l));
+    }
+
+    @Test
     public void testFetchSize() {
-        UserMapper userMapper = getMapper(UserMapper.class);
         // select  from  db
-        logger.info("find one by null: {}", userMapper.findOneById(null));
+        logger.debug("find one by null: {}", userMapper.findOneById(null));
         // select from db
-        logger.info("find one by 1l  : {}", userMapper.findOneById(1l));
+        logger.debug("find one by 1l  : {}", userMapper.findOneById(1l));
 
         // select from cache
-        logger.info("find one by 1l  : {}", userMapper.findOneById(1l));
+        logger.debug("find one by 1l  : {}", userMapper.findOneById(1l));
     }
 
     @Test
@@ -66,5 +74,11 @@ public class SqlTest extends MyBatisTester {
         PageInfo<User> page = new PageInfo(list, 2);
         logger.info("page:{}", page);
 
+    }
+
+    @Test
+    public void testMapKey() {
+        Map<Integer, User> map = userMapper.selectUserMap();
+        logger.debug("map key:{}", map);
     }
 }

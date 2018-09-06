@@ -47,7 +47,8 @@ DROP TABLE IF EXISTS `menu`;
 CREATE TABLE menu (
   id           INT(11) PRIMARY KEY,
   name         VARCHAR(32)  DEFAULT '',
-  is_directory BIT(1)       DEFAULT FALSE,
+  is_directory BIT(1)       DEFAULT FALSE
+  COMMENT '是否是目录',
   father_id    INT(11)      DEFAULT NULL,
   url          VARCHAR(255) DEFAULT '',
   icon         VARCHAR(64)  DEFAULT '',
