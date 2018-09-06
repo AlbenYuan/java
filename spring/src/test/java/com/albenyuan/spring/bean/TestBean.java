@@ -1,9 +1,6 @@
 package com.albenyuan.spring.bean;
 
 import com.albenyuan.spring.common.SpringBaseTestCase;
-import com.albenyuan.spring.lifecycle.CleanupBean;
-import com.albenyuan.spring.lifecycle.Disposable;
-import com.albenyuan.spring.lifecycle.DisposableBeanImpl;
 import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -40,5 +37,5 @@ public class TestBean extends SpringBaseTestCase {
         User userForPrototype2 = application.getBean("userForPrototype", User.class);
         Assert.assertTrue("userForPrototype1 != userForPrototype2", userForPrototype1 != userForPrototype2);
     }
-    
+
 }
