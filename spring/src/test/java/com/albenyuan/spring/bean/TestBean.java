@@ -1,6 +1,9 @@
 package com.albenyuan.spring.bean;
 
 import com.albenyuan.spring.common.SpringBaseTestCase;
+import com.albenyuan.spring.lifecycle.CleanupBean;
+import com.albenyuan.spring.lifecycle.Disposable;
+import com.albenyuan.spring.lifecycle.DisposableBeanImpl;
 import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -44,6 +47,13 @@ public class TestBean extends SpringBaseTestCase {
         logger.info("bean:{}", application.getBean("initBean"));
         logger.info("bean:{}", application.getBean("initializingBeanImpl"));
         logger.info("bean:{}", application.getBean("initializing"));
+    }
+
+    @Test
+    public void testDestroy() {
+        logger.info("CleanupBean:{}", application.getBean(CleanupBean.class));
+        logger.info("Disposable:{}", application.getBean(Disposable.class));
+        logger.info("DisposableBeanImpl:{}", application.getBean(DisposableBeanImpl.class));
     }
 
 
