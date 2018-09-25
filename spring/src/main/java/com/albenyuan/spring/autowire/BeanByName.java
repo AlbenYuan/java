@@ -8,6 +8,7 @@ import com.albenyuan.spring.bean.User;
  */
 public class BeanByName {
 
+
     private User user;
 
     public User getUser() {
