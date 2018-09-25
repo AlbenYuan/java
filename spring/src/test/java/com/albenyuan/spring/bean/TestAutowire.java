@@ -39,6 +39,7 @@ public class TestAutowire extends SpringBaseTestCase {
     @Test
     public void testByType() {
         BeanByType bean = application.getBean(BeanByType.class);
+        logger.info("user:{}", bean.getAccount());
         Assert.assertTrue(null != bean.getAccount());
     }
 }
