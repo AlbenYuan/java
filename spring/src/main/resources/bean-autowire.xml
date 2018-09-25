@@ -4,13 +4,14 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
             http://www.springframework.org/schema/beans
-            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
+       default-autowire="constructor"
+>
 
     <bean id="user" class="com.albenyuan.spring.bean.User"/>
 
     <bean class="com.albenyuan.spring.autowire.BeanByNothing"/>
-    <bean class="com.albenyuan.spring.autowire.BeanByName"/>
-    <bean class="com.albenyuan.spring.autowire.BeanByType"/>
-    <bean class="com.albenyuan.spring.autowire.BeanByNothing"/>
+    <!--<bean class="com.albenyuan.spring.autowire.BeanByName"/>-->
+    <!--<bean class="com.albenyuan.spring.autowire.BeanByType"/>-->
 
 </beans>
