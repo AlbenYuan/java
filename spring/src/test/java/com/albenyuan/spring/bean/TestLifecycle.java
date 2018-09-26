@@ -16,7 +16,7 @@ public class TestLifecycle extends SpringBaseTestCase {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    private TestLifecycle() {
+    public TestLifecycle() {
         super("classpath:bean-lifecycle.xml");
     }
 
