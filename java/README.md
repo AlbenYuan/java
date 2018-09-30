@@ -9,5 +9,5 @@
 
 * [ClassLoader](./docs/ClassLoader.md)
 * [JVM](./docs/JVM.md)
-* [GC](GC.md)
+* [GC](./docs/GC.md)
 
