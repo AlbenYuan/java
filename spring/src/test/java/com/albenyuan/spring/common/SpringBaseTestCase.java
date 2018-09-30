@@ -1,10 +1,8 @@
 package com.albenyuan.spring.common;
 
-import com.albenyuan.commom.SpringJUnitTestCase;
 import org.junit.After;
 import org.junit.runner.RunWith;
 import org.junit.runners.BlockJUnit4ClassRunner;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**

@@ -1,0 +1,17 @@
+@startuml
+
+
+== Create Application ==
+ClassPathXmlApplicationContext -> AbstractXmlApplicationContext: super
+AbstractXmlApplicationContext -> AbstractRefreshableConfigApplicationContext: super
+AbstractRefreshableConfigApplicationContext -> AbstractRefreshableApplicationContext: super
+AbstractRefreshableApplicationContext -> AbstractApplicationContext: super
+AbstractApplicationContext -> AbstractApplicationContext: getResourcePatternResolver
+AbstractApplicationContext -> AbstractApplicationContext: setParent
+ClassPathXmlApplicationContext -> ClassPathXmlApplicationContext: setConfigLocations
+
+== Init Bean ==
+
+
+
+@enduml

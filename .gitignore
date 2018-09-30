@@ -3,8 +3,8 @@
 .idea
 # Log file
 *.log
-*/logs
-*/target
+*/logs/
+*/target/
 *.iml
 
 # BlueJ files

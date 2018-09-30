@@ -3,9 +3,13 @@
 ## mybatis
 
 # required
-1. DataSource 数据源
-1. SqlSessionFactory SqlSession工厂
-1. SqlSession 
-1. Mapper
+  - DataSource 数据源
+  - SqlSessionFactory SqlSession工厂
+  - SqlSession 
+  - Mapper
 
 ## myBatis-spring
+
+## Feature
+ * mybatis 如何实现mapper的代理的？
+ * mybatis 如何实现事务的管理的？

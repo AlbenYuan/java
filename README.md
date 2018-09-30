@@ -2,13 +2,11 @@
 
 ## java知识总结
 
-- [Java基础](./java/README.md)
+- [Java Core](./java/README.md)
 
-- Java安全
+- [JVM](./java/)
 
-- [Thread多线程](./thread/README.md)
-
-- [synchronized](./thread/docs/synchronized.md)
+- [Thread](./thread/README.md)
 
 - [Lock](./thread/docs/locks.md)
 
@@ -18,15 +16,19 @@
 
 - [MySQL](./mysql/README.md)
 
+- [MyBatis](./mybatis/README.md)
+
 - MongoDB
 
-- MyBatis
 
 - Hibernate
 
-## Spring容器
+## Spring
 
-- Spring Core
+- Spring IOC
+
+- Spring AOP
+
 
 ## 缓存
 
