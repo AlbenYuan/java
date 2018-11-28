@@ -4,7 +4,7 @@
 
 - [Java Core](./java/README.md)
 
-- [JVM](./java/)
+- [JVM](./java/docs/JVM.md)
 
 - [Thread](./thread/README.md)
 

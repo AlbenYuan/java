@@ -1,21 +1,28 @@
 # Java虚拟机
-JVM(Java Virtual Machine)，Java虚拟机(以Hot Spot JVM)。
+JVM(Java Virtual Machine)，Java虚拟机(以HotSpot VM)。
 
 ## Java中的数据
 
 ### 数据类型
 
 1. 基本类型
+Java中包含八种基本类型，布尔`boolean`、字节`byte`、字符`char`、浮点数`float`、双精度`double`、短整型`short`、整型`int`、长整型`long`。占用大小如下:
+   
+  |Type       | Byte|Bit  | Range                         | Default        | Class 
+  |:----------|:----|:----|:------------------------------|:---------------|:------
+  | boolean   | -   | 1   | {`false`,`true`}              | `false`        | `Boolean`
+  | byte      | 1   | 8   | $ \[-2^ 8, 2^ 8 - 1] $        | 0b             | `Byte`
+  | short     | 2   | 16  | $ \[-2^16, 2^16 - 1] $        | 0              | `Short`
+  | char      | 2   | 16  | $ \[`'\u0000'`, `'\uFFFF'`] $ |`'\u0000(null)'`| `Character`
+  | int       | 4   | 32  | $ \[-2^31, 2^31 - 1] $        | 0              | `Integer`
+  | float     | 4   | 32  | $ \[1.4e-45f, 3.4028235e+38f]$| 0.0f           | `Float`
+  | long      | 8   | 64  | $ \[-2^63, 2^63 - 1] $        | 0l             | `Long`
+  | double    | 8   | 64  | $ \[2.2250738585072014E-308, 1.7976931348623157e+308] $| 0 | `Double`
 
-java中包含八种基本类型，布尔`boolean`、字节byte、字符char、浮点数float、双精度double、短整型short、整型int、长整型long。
+    这些数据类型，java提供了自动装箱和拆箱的操作。对象的数据类型中基本类型和封装类可以相互转换。注意对象的的引用可能为null，
+    而基本类型的变量均有默认值。null自动拆箱时，会报NullPointException。
 
-2. 基本类型对应的封装类
-
-java对基本的数据类型均做了封装，封装类分别为Boolean、Byte、Char、Float、Double、Short、Integer、Long.
-这些数据类型，java提供了自动装箱和拆箱的操作。对象的数据类型中基本类型和封装类可以相互转换。注意对象的的引用可能为null，
-而基本类型的变量均有默认值。null自动拆箱时，会报NullPointException。
-
-3. 类
+2. 类
 
     使用`class`关键字声明的类。如开发人员定义的`User`和系统提供的字符串操作类`StringBuffer`等。
     ```java
@@ -28,7 +35,7 @@ java对基本的数据类型均做了封装，封装类分别为Boolean、Byte�
         
     }
     ```
-4. Class
+3. Class
 
     JVM本身提供了一个java.lang.Class类，该类用于描述加载的类型的描述。JVM在启动时加载class时，会为每一个class生成一个Class对象实例。
 
@@ -118,3 +125,10 @@ JVM的内存管理主要就是堆的内存管理。其中包含年轻代和老�
 |--老年代      |                 |                 |      
 |栈           |-Xss             |-Xss             |
 |方法区        |-XX:PermSize     |-XX:MaxPermSize  |
+
+
+## Exception & Error
+
+- OutOfMemoryError(堆溢出)
+
+- StackOverflowError(栈溢出)
