@@ -116,16 +116,17 @@ JVM的内存管理主要就是堆的内存管理。其中包含年轻代和老�
 
 ## 参数设置
 
-|内存分区      |最小值            |最大值            |备注    
+|Memory       |Min            |Max            |Remark    
 |:------------|:----------------|:----------------|:------
-|堆           |-Xms             |-Xmx             |        
-|--年轻代      |-XX:NewSize      |-XX:MaxNewSize   |建议设为整个堆大小的1/3或者1/4,两个值设为一样大。     
-|----新生代    |-XX:SurvivorRatio|-XX:SurvivorRatio|设置新生代的比例
-|----幸存区    |-XX:NewRatio     |-XX:NewRatio     |      
-|--老年代      |                 |                 |      
-|栈           |-Xss             |-Xss             |
-|方法区        |-XX:PermSize     |-XX:MaxPermSize  |
+|Heap         |-Xms             |-Xmx             |Xms:默认RAM/64，但不小于1M；Xmx:默认RAM/4，但不小于2M。      
+|--Young      |-XX:NewSize      |-XX:MaxNewSize   |建议设为整个堆大小的1/3或者1/4,两个值设为一样大。     
+|----Eden     |-XX:SurvivorRatio|-XX:SurvivorRatio|设置新生代的比例
+|----Survivor |-XX:NewRatio     |-XX:NewRatio     |      
+|--Old        |                 |                 |      
+|Stack        |-Xss             |-Xss             |512K
+|Method Area  |-XX:PermSize     |-XX:MaxPermSize  |
 
+备注：RAM指物理内存的总大小
 
 ## Exception & Error
 

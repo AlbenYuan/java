@@ -17,16 +17,16 @@
  
 - inner join
 
-  结果：A∩B= {x|x∈A ∧ x∈B}。sql如下：
+  结果：A ∩ B= {x | x∈A ∧ x∈B}。sql如下：
   ```mysql
-  SELECT * FROM A INNER JOIN B ON A.id = B.id
+  SELECT `A`.`id`,`B`.`id` FROM `A` INNER JOIN `B` ON `A`.`id` = `B`.`id`;
   ```
   
 - full outer join
   
-  结果： A ∪ B={x| x∈A ∧ x∈B}
+  结果： A ∪ B = { x | x∈A ∧ x∈B}
   ```mysql
-  SELECT * FROM A FULL outer JOIN B ON A.id = B.id
+  SELECT * FROM `A` FULL OUTER JOIN `B` ON `A`.`id` = `B`.`id`;
   ```
      
  

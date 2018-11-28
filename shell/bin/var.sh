@@ -11,3 +11,7 @@ echo $var
 path=`pwd`
 echo ${path}
 echo $path
+
+readonly path
+
+echo `dirname  $0`
