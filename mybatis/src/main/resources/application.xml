@@ -68,6 +68,23 @@
         <!-- mybatis配置文件 -->
         <property name="configLocation" value="classpath:mybatis.xml"/>
         <property name="mapperLocations" value="classpath:mapping/*.xml"/>
+        <!--<property name="plugins">-->
+            <!--<array>-->
+                <!--<bean class="com.github.pagehelper.PageInterceptor">-->
+                    <!--<property name="properties">-->
+                        <!--&lt;!&ndash;使用下面的方式配置参数，一行配置一个 &ndash;&gt;-->
+                        <!--<value>-->
+                            <!--helperDialect=mysql-->
+                            <!--reasonable=true-->
+                            <!--supportMethodsArguments=true-->
+                            <!--params=count=countSql-->
+                            <!--autoRuntimeDialect=true-->
+                        <!--</value>-->
+                    <!--</property>-->
+                <!--</bean>-->
+
+            <!--</array>-->
+        <!--</property>-->
         <!--<pl-->
     </bean>
 

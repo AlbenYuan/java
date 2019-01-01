@@ -4,6 +4,7 @@ import com.albenyuan.mybatis.entity.Menu;
 import com.albenyuan.mybatis.entity.User;
 import com.albenyuan.mybatis.mapper.MenuMapper;
 import com.albenyuan.mybatis.mapper.UserMapper;
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.junit.Before;
@@ -69,11 +70,19 @@ public class SqlTest extends MyBatisTester {
 
     @Test
     public void testPage() {
-        PageHelper.startPage(1, 2);
-        List<User> list = userMapper.findAll();
-        PageInfo<User> page = new PageInfo(list, 2);
-        logger.info("page:{}", page);
-
+        try {
+            Page<User> page = PageHelper.startPage(0, 10);
+            userMapper.findByName("%%");
+            logger.info("page:{}", page);
+            List<User> list = (List<User>) page.getResult();
+            logger.info("list:{}", list);
+            PageInfo<User> pageInfo = new PageInfo<>(list);
+            logger.info("pageInfo:{}", pageInfo);
+            for (User user : list) {
+                logger.info("user:{}", user);
+            }
+        } finally {
+        }
     }
 
     @Test

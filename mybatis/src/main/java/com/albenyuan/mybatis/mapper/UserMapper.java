@@ -17,6 +17,8 @@ public interface UserMapper {
 
     List<User> findAll();
 
+    List<User> findByName(String name);
+
     User findById(Long id);
 
     User findOneById(@Param("id") Long id);
