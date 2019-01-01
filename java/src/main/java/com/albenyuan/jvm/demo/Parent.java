@@ -6,18 +6,29 @@ package com.albenyuan.jvm.demo;
  */
 public class Parent {
 
+
+    {
+        System.out.println("Parent() before");
+    }
+
+
     public Parent() {
         System.out.println("Parent created.");
     }
 
-    static {
-        System.out.println("Parent's var before.");
+
+    {
+        System.out.println("Parent() after");
     }
 
-    private static Child CHILD = new Child();
+    static {
+        System.out.println("static Parent's var before.");
+    }
+
+//    private static Child CHILD = new Child();
 
     static {
-        System.out.println("Parent's var after.");
+        System.out.println("static Parent's var after.");
     }
 
 }

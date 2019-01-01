@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class HeapOOM {
 
-    private static  double d = d;
+    private static  double d = 0;
 
 
 

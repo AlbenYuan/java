@@ -5,10 +5,18 @@ package com.albenyuan.jvm.demo;
  * @Date 2018-10-25 17:29
  */
 public class Child extends Parent {
+
+    {
+        System.out.println("Child() before");
+    }
+
     public Child(){
         System.out.println("Child created.");
     }
 
+    {
+        System.out.println("Child() after");
+    }
     static {
         System.out.println("Child's var before.");
     }
